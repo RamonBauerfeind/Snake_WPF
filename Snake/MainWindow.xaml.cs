@@ -20,9 +20,16 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
+        Board myBoard;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            myBoard = new Board(SnakeUI);
+
+            //zum Testen
+            myBoard.Control[2, 2].Background = Brushes.Red;
         }
     }
 }

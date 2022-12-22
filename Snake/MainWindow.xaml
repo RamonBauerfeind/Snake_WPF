@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800"
         WindowStyle="None" WindowState="Normal">
-    <Grid>
 
+    <Grid x:Name="SnakeUI">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -87,4 +87,5 @@
         <Button Content="Stop" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
         <Label Content="#Punkte" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
+    
 </Window>
