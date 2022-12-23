@@ -21,6 +21,7 @@ namespace Snake
     public partial class MainWindow : Window
     {
         Board myBoard;
+        SnakeAnimal mySnake;
 
         public MainWindow()
         {
@@ -28,8 +29,8 @@ namespace Snake
 
             myBoard = new Board(SnakeUI);
 
-            //zum Testen
-            myBoard.Control[2, 2].Background = Brushes.Red;
+            mySnake = new SnakeAnimal(myBoard);
+            mySnake.CreateSnake(mySnake.Position);
         }
     }
 }

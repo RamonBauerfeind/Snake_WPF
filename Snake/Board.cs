@@ -34,6 +34,7 @@ namespace Snake
                 for (int j = 1; j < Columns; j++)
                 {
                     Control[i, j] = new Label();
+                    Control[i, j].BorderThickness = new Thickness(1);
                     Grid.SetRow(Control[i, j], i);
                     Grid.SetColumn(Control[i, j], j);
                     Snake.Children.Add(Control[i, j]);
