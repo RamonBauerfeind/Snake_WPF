@@ -24,12 +24,12 @@ namespace Snake
         //Methoden
         public SnakeAnimal(Board myBoard)
         {
-            // TODO: Wert muss dynamisch werden
-            Length = 3;
-
             Board = myBoard;
 
             StartPosition();
+
+            // TODO: möglichen Fehler beheben
+            Length = PositionX.Length;
         }
 
         private void StartPosition()
@@ -55,6 +55,46 @@ namespace Snake
                 {
                     Board.Control[positionY[i], positionX[i]].Background = Brushes.Red;
                 }
+            }
+        }
+
+        public void MoveUp()
+        {
+            for(int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionX[i + 1];
+                PositionY[Length - 1]++;
+            }
+        }
+
+        public void MoveDown(int posX, int posY)
+        {
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionX[i + 1];
+                PositionY[Length - 1]--;
+            }
+        }
+
+        public void MoveLeft(int posX, int posY)
+        {
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionX[i + 1];
+                PositionX[Length - 1]--;
+            }
+        }
+
+        public void MoveReight(int posX, int posY)
+        {
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionX[i + 1];
+                PositionX[Length - 1]++;
             }
         }
     }
