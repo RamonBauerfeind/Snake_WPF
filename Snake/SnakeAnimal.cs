@@ -32,7 +32,7 @@ namespace Snake
             Length = PositionX.Length;
         }
 
-        private void StartPosition()
+        public void StartPosition()
         {
             int[] posX = new int[] { 2, 2, 2 };
             int[] posY = new int[] { 2, 3, 4 };
@@ -60,42 +60,62 @@ namespace Snake
 
         public void MoveUp()
         {
-            for(int i = 0; i < Length - 1; i++)
-            {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionX[i + 1];
-                PositionY[Length - 1]++;
-            }
-        }
+            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-        public void MoveDown(int posX, int posY)
-        {
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
                 PositionY[i] = PositionX[i + 1];
-                PositionY[Length - 1]--;
             }
+
+            PositionY[Length - 1]--;
+
+            CreateSnake(PositionX, PositionY);
         }
 
-        public void MoveLeft(int posX, int posY)
+        public void MoveDown()
         {
+            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionY[i + 1];
+            }
+
+            PositionY[Length - 1]++;
+
+            CreateSnake(PositionX, PositionY);
+        }
+
+        public void MoveLeft()
+        {
+            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
                 PositionY[i] = PositionX[i + 1];
-                PositionX[Length - 1]--;
             }
+
+            PositionX[Length - 1]--;
+
+            CreateSnake(PositionX, PositionY);
         }
 
-        public void MoveReight(int posX, int posY)
+        public void MoveReight()
         {
+            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
                 PositionY[i] = PositionX[i + 1];
-                PositionX[Length - 1]++;
             }
+
+            PositionX[Length - 1]++;
+
+            CreateSnake(PositionX, PositionY);
         }
     }
 }

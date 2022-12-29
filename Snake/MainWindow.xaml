@@ -82,7 +82,7 @@
         <Label Grid.Row="27" Grid.Column="0" Background="Yellow"/>
         <Label Grid.Row="27" Grid.Column="27" Background="Yellow"/>
 
-        <Button Content="Start" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5"/>
+        <Button x:Name="btn_Start" Click="btn_Start_Click" Content="Start" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5"/>
         <Button Content="Pause" Grid.Row="27" Grid.Column="8" Grid.ColumnSpan="5"/>
         <Button Content="Stop" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
         <Label Content="#Punkte" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
