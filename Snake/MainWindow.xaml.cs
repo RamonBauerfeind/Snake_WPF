@@ -30,7 +30,6 @@ namespace Snake
             myBoard = new Board(SnakeUI);
 
             mySnake = new SnakeAnimal(myBoard);
-            mySnake.CreateSnake(mySnake.Position);
         }
     }
 }

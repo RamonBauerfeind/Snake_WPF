@@ -14,7 +14,9 @@ namespace Snake
         //Attribute
         public int Length { get; set; }
 
-        public int[,] Position { get; set; }
+        public int[]? PositionX { get; set; }
+
+        public int[]? PositionY { get; set; }
 
         public Board Board { get; set; }
 
@@ -24,30 +26,34 @@ namespace Snake
         {
             // TODO: Wert muss dynamisch werden
             Length = 3;
-            
-            Position = StartPosition();
 
             Board = myBoard;
 
-            //CreateSnake(Position, myBoard);
+            StartPosition();
         }
 
-        private int[,] StartPosition()
+        private void StartPosition()
         {
-            // TODO: Länge dynamisch
-            int[,] pos = new int[3, 2] { { 4, 2 }, { 3, 2 }, { 2, 2 } };
+            int[] posX = new int[] { 2, 2, 2 };
+            int[] posY = new int[] { 2, 3, 4 };
 
-            return pos;
+            PositionX = posX;
+            PositionY = posY;
+
+            CreateSnake(PositionX, PositionY);
         }
 
-        // TODO: Hier liegt ein Fehler vor.
-        public void CreateSnake(int[,] position)
+        public void CreateSnake(int[] positionX, int[] positionY)
         {
-            for (int i = 1; i < Length; i++)
+            for (int i = 0; i < positionX.Length; i++)
             {
-                for (int j = 1; j < Length; j++)
+                if (i == positionX.Length - 1)
                 {
-                    Board.Control[j, i].Background = Brushes.Red;
+                    Board.Control[positionY[i], positionX[i]].Background = Brushes.Green;
+                }
+                else
+                {
+                    Board.Control[positionY[i], positionX[i]].Background = Brushes.Red;
                 }
             }
         }
