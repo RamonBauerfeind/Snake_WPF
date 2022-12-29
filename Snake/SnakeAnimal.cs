@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,9 +15,9 @@ namespace Snake
         //Attribute
         public int Length { get; set; }
 
-        public int[]? PositionX { get; set; }
+        public int[] PositionX { get; set; }
 
-        public int[]? PositionY { get; set; }
+        public int[] PositionY { get; set; }
 
         public Board Board { get; set; }
 
@@ -29,7 +30,8 @@ namespace Snake
             StartPosition();
 
             // TODO: möglichen Fehler beheben
-            Length = PositionX.Length;
+            if(PositionX != null)
+                Length = PositionX.Length;
         }
 
         public void StartPosition()
@@ -43,7 +45,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
-        public void CreateSnake(int[] positionX, int[] positionY)
+        private void CreateSnake(int[] positionX, int[] positionY)
         {
             for (int i = 0; i < positionX.Length; i++)
             {

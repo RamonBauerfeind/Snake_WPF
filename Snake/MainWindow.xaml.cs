@@ -32,11 +32,12 @@ namespace Snake
 
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(TimerTick);
-            timer.Interval = new TimeSpan(1000000);
+            timer.Tick += new EventHandler(GameTick);
+            timer.Interval = TimeSpan.FromSeconds(0.5);
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        // Funktion wird bei jedem Tick des Timers ausgelöst
+        private void GameTick(object sender, EventArgs e)
         {
             mySnake.MoveDown();
         }
@@ -48,6 +49,19 @@ namespace Snake
             mySnake = new SnakeAnimal(myBoard);
 
             timer.Start();
+        }
+
+        // TODO: Button funktioniert nicht
+        private void btn_Pause_Click(object sender, RoutedEventArgs e)
+        {
+            if(timer.IsEnabled)
+            {
+                timer.Stop();
+            }
+            else 
+            {
+                timer.Start();
+            }
         }
     }
 }
