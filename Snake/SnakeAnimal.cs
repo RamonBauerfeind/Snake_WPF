@@ -29,11 +29,11 @@ namespace Snake
 
             StartPosition();
 
-            // TODO: möglichen Fehler beheben
             if(PositionX != null)
                 Length = PositionX.Length;
         }
 
+        //Position der Schlange bei Spielbeginn
         public void StartPosition()
         {
             int[] posX = new int[] { 2, 2, 2 };
@@ -45,6 +45,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
+        //Schlange erstellen
         private void CreateSnake(int[] positionX, int[] positionY)
         {
             for (int i = 0; i < positionX.Length; i++)
@@ -60,6 +61,7 @@ namespace Snake
             }
         }
 
+        //Bewegung nach oben
         public void MoveUp()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
@@ -67,7 +69,7 @@ namespace Snake
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionX[i + 1];
+                PositionY[i] = PositionY[i + 1];
             }
 
             PositionY[Length - 1]--;
@@ -75,6 +77,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
+        //Bewegung nach unten
         public void MoveDown()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
@@ -90,6 +93,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
+        //Bewegung nach links
         public void MoveLeft()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
@@ -97,7 +101,7 @@ namespace Snake
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionX[i + 1];
+                PositionY[i] = PositionY[i + 1];
             }
 
             PositionX[Length - 1]--;
@@ -105,6 +109,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
+        //Bewegung nach rechts
         public void MoveReight()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
@@ -112,7 +117,7 @@ namespace Snake
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionX[i + 1];
+                PositionY[i] = PositionY[i + 1];
             }
 
             PositionX[Length - 1]++;

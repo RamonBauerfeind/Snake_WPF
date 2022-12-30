@@ -8,7 +8,7 @@
         Title="MainWindow" Height="600" Width="800"
         WindowStyle="None" WindowState="Normal">
 
-    <Grid x:Name="SnakeUI">
+    <Grid x:Name="SnakeUI" KeyDown="KeyEventArgs">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -82,9 +82,9 @@
         <Label Grid.Row="27" Grid.Column="0" Background="Yellow"/>
         <Label Grid.Row="27" Grid.Column="27" Background="Yellow"/>
 
-        <Button x:Name="btn_Start" Click="btn_Start_Click" Content="Start" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5"/>
-        <Button x:Name="btn_Pause" Click="btn_Pause_Click" Content="Pause" Grid.Row="27" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <Button Content="Stop" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
+        <Button x:Name="btn_Start" Click="btn_Start_Click" Content="Start [F1]" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5"/>
+        <Button x:Name="btn_Pause" Click="btn_Pause_Click" Content="Pause [F2]" Grid.Row="27" Grid.Column="8" Grid.ColumnSpan="5"/>
+        <Button Content="Stop [F3]" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
         <Label Content="#Punkte" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="Bold" FontStyle="Italic"/>
     </Grid>
     
