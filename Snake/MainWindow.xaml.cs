@@ -28,7 +28,7 @@ namespace Snake
         Food myFruit;
         DispatcherTimer timer;
         private int count = 0;
-        public string direction;
+        public char direction;
 
         public MainWindow()
         {
@@ -37,7 +37,7 @@ namespace Snake
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(GameTick);
-            timer.Interval = TimeSpan.FromSeconds(0.25);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 250);
         }
 
         //Funktion wird bei jedem Tick des Timers ausgelöst
@@ -46,14 +46,12 @@ namespace Snake
            PlayGame();
         }
 
-        // TODO: Button funktioniert nur einmalig beim Start
-        private void btn_Start_Click(object sender, RoutedEventArgs e)
+        private void btn_Start_Click(object sender, EventArgs e)
         {
             StartGame();
         }
 
-        // TODO: Button funktioniert nicht
-        private void btn_Pause_Click(object sender, RoutedEventArgs e)
+        private void btn_Pause_Click(object sender, EventArgs e)
         {
             PauseGame();
         }
@@ -61,6 +59,7 @@ namespace Snake
         //Start
         private void StartGame()
         {
+
             myBoard = new Board(SnakeUI);
 
             myFruit = new Food(myBoard);
@@ -69,7 +68,6 @@ namespace Snake
 
 
             timer.Start();
-
         }
 
         //Stop
@@ -90,16 +88,16 @@ namespace Snake
         {
             switch (direction) 
             {
-                case "left":
+                case 'l':
                     mySnake.MoveLeft();
                     break;
-                case "right":
+                case 'r':
                     mySnake.MoveReight();
                     break;
-                case "up":
+                case 'u':
                     mySnake.MoveUp();
                     break;
-                case "down":
+                case 'd':
                     mySnake.MoveDown();
                     break;
                 default:
@@ -117,21 +115,21 @@ namespace Snake
             {
                 case Key.Left:
                     mySnake.MoveLeft();
-                    direction = "left";
+                    direction = 'l';
                     break;
                 case Key.Right:
                     mySnake.MoveReight();
-                    direction = "right";
+                    direction = 'r';
                     break;
                 case Key.Up:
                     mySnake.MoveUp();
-                    direction = "up";
+                    direction = 'u';
                     break;
                 case Key.Down:
                     mySnake.MoveDown();
-                    direction = "down";
+                    direction = 'd';
                     break;
-                // TODO: Buttons F1 und F2 funktionieren nicht
+                // TODO: F1 funktioniert nicht um das Spiel zu starten
                 case Key.F1:
                     StartGame();
                     break;

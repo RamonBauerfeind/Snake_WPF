@@ -131,7 +131,7 @@ namespace Snake
 
         public void Eat()
         {
-            if(Fruit.PosX == PositionX[PositionX.Length - 1] && Fruit.PosY == PositionY[PositionY.Length - 1]) 
+            if((Fruit.PosX == PositionX[PositionX.Length - 1]) && (Fruit.PosY == PositionY[PositionY.Length - 1])) 
             {
                 // TODO: Schlange verlängern
                 //if(Fruit.FruitType() == "apple")
@@ -145,9 +145,8 @@ namespace Snake
                 //    Fruit.CreateFruit();
                 //}
 
-                // TODO: Probleme beim Erstellen der Frucht beheben
+                // TODO: Probleme beim Erstellen der Frucht beheben (Timer???)
                 Fruit = new Food(Board);
-                Fruit.CreateFruit();
             }
         }
     }
