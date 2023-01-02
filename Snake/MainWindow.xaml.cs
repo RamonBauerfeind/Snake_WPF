@@ -25,6 +25,7 @@ namespace Snake
     {
         Board myBoard;
         SnakeAnimal mySnake;
+        Food myFruit;
         DispatcherTimer timer;
         private int count = 0;
         public string direction;
@@ -36,7 +37,7 @@ namespace Snake
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(GameTick);
-            timer.Interval = TimeSpan.FromSeconds(0.5);
+            timer.Interval = TimeSpan.FromSeconds(0.25);
         }
 
         //Funktion wird bei jedem Tick des Timers ausgelöst
@@ -62,7 +63,10 @@ namespace Snake
         {
             myBoard = new Board(SnakeUI);
 
-            mySnake = new SnakeAnimal(myBoard);
+            myFruit = new Food(myBoard);
+
+            mySnake = new SnakeAnimal(myBoard, myFruit);
+
 
             timer.Start();
 
@@ -102,6 +106,8 @@ namespace Snake
                     mySnake.MoveDown();
                     break;
             }
+
+            mySnake.Eat();
         }
 
         //Tastaturbelegung

@@ -21,15 +21,19 @@ namespace Snake
 
         public Board Board { get; set; }
 
+        public Food Fruit { get; set; }
+
 
         //Methoden
-        public SnakeAnimal(Board myBoard)
+        public SnakeAnimal(Board myBoard, Food fruit)
         {
             Board = myBoard;
 
+            Fruit = fruit;
+
             StartPosition();
 
-            if(PositionX != null)
+            if (PositionX != null)
                 Length = PositionX.Length;
         }
 
@@ -123,6 +127,28 @@ namespace Snake
             PositionX[Length - 1]++;
 
             CreateSnake(PositionX, PositionY);
+        }
+
+        public void Eat()
+        {
+            if(Fruit.PosX == PositionX[PositionX.Length - 1] && Fruit.PosY == PositionY[PositionY.Length - 1]) 
+            {
+                // TODO: Schlange verlängern
+                //if(Fruit.FruitType() == "apple")
+                //{
+                //    //for(int i = Length - 1; i >= 0; i--)
+                //    //{
+                //    //    PositionX[i + 1] = PositionX[i];
+                //    //    PositionY[i + 1] = PositionY[i];
+                //    //}
+                //    //CreateSnake(PositionX, PositionY);
+                //    Fruit.CreateFruit();
+                //}
+
+                // TODO: Probleme beim Erstellen der Frucht beheben
+                Fruit = new Food(Board);
+                Fruit.CreateFruit();
+            }
         }
     }
 }
