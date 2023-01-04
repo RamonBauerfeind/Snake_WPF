@@ -27,12 +27,17 @@ namespace Snake
         SnakeAnimal mySnake;
         Food myFruit;
         DispatcherTimer timer;
-        private int count = 0;
         public char direction;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            myBoard = new Board(SnakeUI);
+
+            myFruit = new Food(myBoard);
+
+            mySnake = new SnakeAnimal(myBoard, myFruit);
 
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
@@ -41,7 +46,7 @@ namespace Snake
         }
 
         //Funktion wird bei jedem Tick des Timers ausgelöst
-        private void GameTick(object sender, EventArgs e)
+        private void GameTick(object? sender, EventArgs e)
         {
            PlayGame();
         }
@@ -59,14 +64,7 @@ namespace Snake
         //Start
         private void StartGame()
         {
-
-            myBoard = new Board(SnakeUI);
-
-            myFruit = new Food(myBoard);
-
-            mySnake = new SnakeAnimal(myBoard, myFruit);
-
-
+            // TODO: Clear Board
             timer.Start();
         }
 
@@ -86,26 +84,27 @@ namespace Snake
         //Spielablauf
         public void PlayGame()
         {
+            // TODO: Food wird nicht immer erstellt (Problem mit timer???)
+            if(mySnake.Eat() == true)
+            {
+                myFruit = new Food(myBoard);
+            }
+
             switch (direction) 
             {
                 case 'l':
-                    mySnake.Eat();
                     mySnake.MoveLeft();
                     break;
                 case 'r':
-                    mySnake.Eat();
                     mySnake.MoveReight();
                     break;
                 case 'u':
-                    mySnake.Eat();
                     mySnake.MoveUp();
                     break;
                 case 'd':
-                    mySnake.Eat();
                     mySnake.MoveDown();
                     break;
                 default:
-                    mySnake.Eat();
                     mySnake.MoveDown();
                     break;
             }
