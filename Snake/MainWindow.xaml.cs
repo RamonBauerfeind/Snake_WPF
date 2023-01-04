@@ -89,23 +89,26 @@ namespace Snake
             switch (direction) 
             {
                 case 'l':
+                    mySnake.Eat();
                     mySnake.MoveLeft();
                     break;
                 case 'r':
+                    mySnake.Eat();
                     mySnake.MoveReight();
                     break;
                 case 'u':
+                    mySnake.Eat();
                     mySnake.MoveUp();
                     break;
                 case 'd':
+                    mySnake.Eat();
                     mySnake.MoveDown();
                     break;
                 default:
+                    mySnake.Eat();
                     mySnake.MoveDown();
                     break;
             }
-
-            mySnake.Eat();
         }
 
         //Tastaturbelegung

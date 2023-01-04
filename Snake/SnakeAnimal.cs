@@ -31,20 +31,11 @@ namespace Snake
 
             Fruit = fruit;
 
-            StartPosition();
+            PositionX = new int[] { 2, 2, 2 };
 
-            if (PositionX != null)
-                Length = PositionX.Length;
-        }
+            PositionY = new int[] { 2, 3, 4 };
 
-        //Position der Schlange bei Spielbeginn
-        public void StartPosition()
-        {
-            int[] posX = new int[] { 2, 2, 2 };
-            int[] posY = new int[] { 2, 3, 4 };
-
-            PositionX = posX;
-            PositionY = posY;
+            Length = PositionX.Length;
 
             CreateSnake(PositionX, PositionY);
         }
