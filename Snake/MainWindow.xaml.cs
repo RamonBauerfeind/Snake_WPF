@@ -28,6 +28,7 @@ namespace Snake
         Food myFruit;
         DispatcherTimer timer;
         public char direction;
+        public bool extend = false;
 
         public MainWindow()
         {
@@ -84,30 +85,33 @@ namespace Snake
         //Spielablauf
         public void PlayGame()
         {
-            // TODO: Food wird nicht immer erstellt (Problem mit timer???)
+            // TODO: Food wird nicht immer erstellt -> ausschließen, dass Food in Schlange erstellt wird)
             if(mySnake.Eat() == true)
             {
                 myFruit = new Food(myBoard);
+                extend = true;
             }
 
             switch (direction) 
             {
                 case 'l':
-                    mySnake.MoveLeft();
+                    mySnake.MoveLeft(extend);
                     break;
                 case 'r':
-                    mySnake.MoveReight();
+                    mySnake.MoveReight(extend);
                     break;
                 case 'u':
-                    mySnake.MoveUp();
+                    mySnake.MoveUp(extend);
                     break;
                 case 'd':
-                    mySnake.MoveDown();
+                    mySnake.MoveDown(extend);
                     break;
                 default:
-                    mySnake.MoveDown();
+                    mySnake.MoveDown(extend);
                     break;
             }
+
+            extend = false;
         }
 
         //Tastaturbelegung
@@ -116,19 +120,19 @@ namespace Snake
             switch (e.Key) 
             {
                 case Key.Left:
-                    mySnake.MoveLeft();
+                    mySnake.MoveLeft(extend);
                     direction = 'l';
                     break;
                 case Key.Right:
-                    mySnake.MoveReight();
+                    mySnake.MoveReight(extend);
                     direction = 'r';
                     break;
                 case Key.Up:
-                    mySnake.MoveUp();
+                    mySnake.MoveUp(extend);
                     direction = 'u';
                     break;
                 case Key.Down:
-                    mySnake.MoveDown();
+                    mySnake.MoveDown(extend);
                     direction = 'd';
                     break;
                 // TODO: F1 funktioniert nicht um das Spiel zu starten

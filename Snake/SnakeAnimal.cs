@@ -15,9 +15,9 @@ namespace Snake
         //Attribute
         public int Length { get; set; }
 
-        public int[] PositionX { get; set; }
+        public List<int> PositionX { get; set; }
 
-        public int[] PositionY { get; set; }
+        public List<int> PositionY { get; set; }
 
         public Board Board { get; set; }
 
@@ -31,21 +31,27 @@ namespace Snake
 
             Fruit = fruit;
 
-            PositionX = new int[] { 2, 2, 2 };
+            PositionX = new List<int>();
+            PositionX.Add(2);
+            PositionX.Add(2);
+            PositionX.Add(2);
 
-            PositionY = new int[] { 2, 3, 4 };
+            PositionY = new List<int>();
+            PositionY.Add(2);
+            PositionY.Add(3);
+            PositionY.Add(4);
 
-            Length = PositionX.Length;
+            Length = PositionX.Count;
 
             CreateSnake(PositionX, PositionY);
         }
 
         //Schlange erstellen
-        private void CreateSnake(int[] positionX, int[] positionY)
+        private void CreateSnake(List<int> positionX, List<int> positionY)
         {
-            for (int i = 0; i < positionX.Length; i++)
+            for (int i = 0; i < positionX.Count; i++)
             {
-                if (i == positionX.Length - 1)
+                if (i == positionX.Count - 1)
                 {
                     Board.Control[positionY[i], positionX[i]].Background = Brushes.Green;
                 }
@@ -57,23 +63,45 @@ namespace Snake
         }
 
         //Bewegung nach oben
-        public void MoveUp()
+        public void MoveUp(bool extend)
         {
-            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+            int x = 0;
+            int y = 0;
 
-            for (int i = 0; i < Length - 1; i++)
+            if(extend == false)
             {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionY[i + 1];
-            }
+                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-            PositionY[Length - 1]--;
+                for (int i = 0; i < Length - 1; i++)
+                {
+                    PositionX[i] = PositionX[i + 1];
+                    PositionY[i] = PositionY[i + 1];
+                }
+
+                PositionY[Length - 1]--;
+            }
+            else
+            {
+                // TODO: Verlängerung der Schlange für alle Richtungen integrieren / funktioniert nur einmalig
+                PositionX.Add(PositionX[PositionX.Count - 1]);
+                PositionY.Add(PositionY[PositionY.Count - 1]);
+                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+                Length++;
+
+                for (int i = 0; i < Length - 1; i++)
+                {
+                    PositionX[i] = PositionX[i + 1];
+                    PositionY[i] = PositionY[i + 1];
+                }
+
+                PositionY[Length - 1]--;
+            }
 
             CreateSnake(PositionX, PositionY);
         }
 
         //Bewegung nach unten
-        public void MoveDown()
+        public void MoveDown(bool extend)
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
@@ -89,7 +117,7 @@ namespace Snake
         }
 
         //Bewegung nach links
-        public void MoveLeft()
+        public void MoveLeft(bool extend)
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
@@ -105,7 +133,7 @@ namespace Snake
         }
 
         //Bewegung nach rechts
-        public void MoveReight()
+        public void MoveReight(bool extend)
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
@@ -124,10 +152,8 @@ namespace Snake
         {
             bool eat = false;
 
-            if((Fruit.PosX == PositionX[PositionX.Length - 1]) && (Fruit.PosY == PositionY[PositionY.Length - 1])) 
+            if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
-                // TODO: Schlange verlängern
-
                 eat = true;
 
                 return eat;

@@ -39,7 +39,7 @@ namespace Snake
         {
             Random randX = new Random();
             positionX = randX.Next(1, board.Columns - 1);
-
+            
             return positionX;
         }
 
