@@ -14,7 +14,7 @@ namespace Snake
 
         public int PosY { get; set; }
 
-        public string Fruit { get; set; } 
+        public char Fruit { get; set; } 
 
         Board Board { get; set; }
 
@@ -52,16 +52,17 @@ namespace Snake
         }
 
         // TODO: mehrere Arten von Früchten erstellen
-        public string FruitType()
+        public char FruitType()
         {
-            return "apple";
+            //a == apple
+            return 'a';
         }
 
         public void CreateFruit()
         {
             switch(Fruit) 
             {
-                case "apple":
+                case 'a':
                     Board.Control[PosY, PosX].Background = Brushes.Violet;
                     break;
                 default:
