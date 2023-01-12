@@ -169,6 +169,7 @@ namespace Snake
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
+                // TODO: ausschließen dass Food in Schlange erstellt wird)
                 Fruit = new Food(Board);
 
                 eat = true;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
@@ -63,30 +64,38 @@ namespace Snake
             PauseGame();
         }
 
+        private void btn_Stop_Quit(object sender, RoutedEventArgs e)
+        {
+            QuitGame();
+        }
+
         //Start
         private void StartGame()
         {
-            // TODO: Clear Board
-            timer.Start();
+            if(timer.IsEnabled == false)
+            {
+                timer.Start();
+            }
         }
 
         //Stop
         private void PauseGame()
         {
-            if (timer.IsEnabled)
+            if (timer.IsEnabled == true)
             {
                 timer.Stop();
             }
-            else
-            {
-                timer.Start();
-            }
+        }
+
+        private void QuitGame()
+        {
+            timer.Stop();
+            Application.Current.Shutdown();
         }
         
         //Spielablauf
         public void PlayGame()
         {
-            // TODO: Food wird nicht immer erstellt -> ausschließen, dass Food in Schlange erstellt wird)
             if(mySnake.Eat() == true)
             {
                 extend = true;

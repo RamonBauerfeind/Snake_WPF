@@ -84,7 +84,7 @@
 
         <Button x:Name="btn_Start" Click="btn_Start_Click" Content="Start [F1]" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="5"/>
         <Button x:Name="btn_Pause" Click="btn_Pause_Click" Content="Pause [F2]" Grid.Row="27" Grid.Column="8" Grid.ColumnSpan="5"/>
-        <Button x:Name="btn_Stop" Content="Stop [F3]" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
+        <Button x:Name="btn_Quit" Click="btn_Stop_Quit" Content="Stop [F3]" Grid.Row="27" Grid.Column="15" Grid.ColumnSpan="5"/>
         <Label x:Name="lb_Score" Content="Score: 0" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="ExtraBold" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
     </Grid>
     
