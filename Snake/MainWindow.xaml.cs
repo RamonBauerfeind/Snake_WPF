@@ -88,7 +88,7 @@ namespace Snake
             // TODO: Food wird nicht immer erstellt -> ausschließen, dass Food in Schlange erstellt wird)
             if(mySnake.Eat() == true)
             {
-                myFruit = new Food(myBoard);
+                //myFruit = new Food(myBoard);
                 extend = true;
             }
 

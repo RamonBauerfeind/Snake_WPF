@@ -25,11 +25,11 @@ namespace Snake
 
 
         //Methoden
-        public SnakeAnimal(Board myBoard, Food fruit)
+        public SnakeAnimal(Board myBoard, Food myFruit)
         {
             Board = myBoard;
 
-            Fruit = fruit;
+            Fruit = myFruit;
 
             PositionX = new List<int>();
             PositionX.Add(2);
@@ -65,34 +65,15 @@ namespace Snake
         //Bewegung nach oben
         public void MoveUp(bool extend)
         {
-            int x = 0;
-            int y = 0;
-
             if(extend == false)
             {
-                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
-
-                for (int i = 0; i < Length - 1; i++)
-                {
-                    PositionX[i] = PositionX[i + 1];
-                    PositionY[i] = PositionY[i + 1];
-                }
+                NotExtend();
 
                 PositionY[Length - 1]--;
             }
             else
             {
-                // TODO: Verlängerung der Schlange für alle Richtungen integrieren / funktioniert nur einmalig
-                PositionX.Add(PositionX[PositionX.Count - 1]);
-                PositionY.Add(PositionY[PositionY.Count - 1]);
-                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
-                Length++;
-
-                for (int i = 0; i < Length - 1; i++)
-                {
-                    PositionX[i] = PositionX[i + 1];
-                    PositionY[i] = PositionY[i + 1];
-                }
+                Extend();
 
                 PositionY[Length - 1]--;
             }
@@ -103,15 +84,18 @@ namespace Snake
         //Bewegung nach unten
         public void MoveDown(bool extend)
         {
-            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
-
-            for (int i = 0; i < Length - 1; i++)
+            if(extend == false)
             {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionY[i + 1];
-            }
+                NotExtend();
 
-            PositionY[Length - 1]++;
+                PositionY[Length - 1]++;
+            }
+            else
+            {
+                Extend();
+
+                PositionY[Length - 1]++;
+            }
 
             CreateSnake(PositionX, PositionY);
         }
@@ -119,21 +103,42 @@ namespace Snake
         //Bewegung nach links
         public void MoveLeft(bool extend)
         {
-            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+           if(extend == false)
+           {
+                NotExtend();
 
-            for (int i = 0; i < Length - 1; i++)
+                PositionX[Length - 1]--;
+           }
+           else
             {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionY[i + 1];
-            }
+                Extend();
 
-            PositionX[Length - 1]--;
+                PositionX[Length - 1]--;
+            }
 
             CreateSnake(PositionX, PositionY);
         }
 
         //Bewegung nach rechts
         public void MoveReight(bool extend)
+        {
+            if(extend == false)
+            {
+                NotExtend();
+
+                PositionX[Length - 1]++;
+            }
+            else
+            {
+                Extend();
+
+                PositionX[Length - 1]++;
+            }
+
+            CreateSnake(PositionX, PositionY);
+        }
+
+        private void NotExtend()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
@@ -142,10 +147,20 @@ namespace Snake
                 PositionX[i] = PositionX[i + 1];
                 PositionY[i] = PositionY[i + 1];
             }
+        }
 
-            PositionX[Length - 1]++;
+        private void Extend()
+        {
+            PositionX.Add(PositionX[PositionX.Count - 1]);
+            PositionY.Add(PositionY[PositionY.Count - 1]);
+            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+            Length++;
 
-            CreateSnake(PositionX, PositionY);
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionX[i] = PositionX[i + 1];
+                PositionY[i] = PositionY[i + 1];
+            }
         }
 
         public bool Eat()
@@ -154,6 +169,8 @@ namespace Snake
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
+                Fruit = new Food(Board);
+
                 eat = true;
 
                 return eat;
