@@ -29,6 +29,7 @@ namespace Snake
         DispatcherTimer timer;
         public char direction;
         public bool extend = false;
+        public int score = 0;
 
         public MainWindow()
         {
@@ -88,8 +89,11 @@ namespace Snake
             // TODO: Food wird nicht immer erstellt -> ausschließen, dass Food in Schlange erstellt wird)
             if(mySnake.Eat() == true)
             {
-                //myFruit = new Food(myBoard);
                 extend = true;
+
+                score = score + 10;
+
+                lb_Score.Content = "Score: " + score;
             }
 
             switch (direction) 
