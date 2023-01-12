@@ -87,6 +87,7 @@ namespace Snake
             }
         }
 
+        //Beenden
         private void QuitGame()
         {
             timer.Stop();
@@ -96,6 +97,7 @@ namespace Snake
         //Spielablauf
         public void PlayGame()
         {
+            //Schlange verlängern und Punkte hochzählen
             if(mySnake.Eat() == true)
             {
                 extend = true;
@@ -105,21 +107,27 @@ namespace Snake
                 lb_Score.Content = "Score: " + score;
             }
 
+            //Bewegung der Schlange
             switch (direction) 
             {
                 case 'l':
+                    CheckCollision();
                     mySnake.MoveLeft(extend);
                     break;
                 case 'r':
+                    CheckCollision();
                     mySnake.MoveReight(extend);
                     break;
                 case 'u':
+                    CheckCollision();
                     mySnake.MoveUp(extend);
                     break;
                 case 'd':
+                    CheckCollision();
                     mySnake.MoveDown(extend);
                     break;
                 default:
+                    CheckCollision();
                     mySnake.MoveDown(extend);
                     break;
             }
@@ -155,8 +163,23 @@ namespace Snake
                 case Key.F2:
                     PauseGame();
                     break;
+                case Key.F3:
+                    QuitGame();
+                    break;
                 default:
                     break;
+            }
+        }
+
+        //Kollisionsprüfung
+        private void CheckCollision()
+        {
+            bool collisionSnake = mySnake.CheckCollisionSnake();
+
+            if (collisionSnake == true)
+            {
+                timer.Stop();
+                Application.Current.Shutdown();
             }
         }
     }

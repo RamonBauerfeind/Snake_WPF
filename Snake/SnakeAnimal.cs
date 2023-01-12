@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -59,7 +60,7 @@ namespace Snake
                 {
                     Board.Control[positionY[i], positionX[i]].Background = Brushes.Red;
                 }
-            }
+            } 
         }
 
         //Bewegung nach oben
@@ -138,6 +139,7 @@ namespace Snake
             CreateSnake(PositionX, PositionY);
         }
 
+        //Schlange nicht verlängern
         private void NotExtend()
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
@@ -149,6 +151,7 @@ namespace Snake
             }
         }
 
+        //Schlange verlängern
         private void Extend()
         {
             PositionX.Add(PositionX[PositionX.Count - 1]);
@@ -163,6 +166,7 @@ namespace Snake
             }
         }
 
+        //Fressen
         public bool Eat()
         {
             bool eat = false;
@@ -178,6 +182,23 @@ namespace Snake
             }
 
             return eat;
+        }
+
+        //Prüfung ob Schlange mit sich selbst kollidiert
+        public bool CheckCollisionSnake()
+        {
+            bool collisonSnake = false;
+
+            for (int i = 0; i < Length - 1; i++)
+            {
+                if (PositionX[Length - 1] == PositionX[i] && PositionY[Length - 1] == PositionY[i])
+                {
+                    MessageBox.Show("Game Over");
+                    collisonSnake = true;
+                }
+            }
+
+            return collisonSnake;
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Snake
             CreateFruit();
         }
 
+        //Zufallszahl für X-Koordinate
         private int PositionX(Board board)
         {
             Random randX = new Random();
@@ -43,6 +44,7 @@ namespace Snake
             return positionX;
         }
 
+        //Zufallszahl für Y-Koordinate
         private int PositionY(Board board) 
         {
             Random randY = new Random();
@@ -51,13 +53,16 @@ namespace Snake
             return positionY;
         }
 
-        // TODO: mehrere Arten von Früchten erstellen
+        //Art der Frucht
         public char FruitType()
         {
             //a == apple
             return 'a';
+
+            // TODO: mehrere Arten von Früchten erstellen
         }
 
+        //Erstellen einer Frucht
         public void CreateFruit()
         {
             switch(Fruit) 
@@ -70,6 +75,5 @@ namespace Snake
                     break;
             }
         }
-
     }
 }
