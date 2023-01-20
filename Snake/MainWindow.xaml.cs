@@ -25,7 +25,7 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Todo: Bugfixes im gesamten Spiel
+        //TODO: Bugfixes im gesamten Spiel
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
