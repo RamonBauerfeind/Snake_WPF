@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -24,6 +25,7 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Todo: Bugfixes im gesamten Spiel
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
@@ -111,24 +113,29 @@ namespace Snake
             switch (direction) 
             {
                 case 'l':
-                    CheckCollision();
+                    CheckCollisionSnake();
                     mySnake.MoveLeft(extend);
+                    CheckCollisionBoard();
                     break;
                 case 'r':
-                    CheckCollision();
+                    CheckCollisionSnake();
                     mySnake.MoveReight(extend);
+                    CheckCollisionBoard();
                     break;
                 case 'u':
-                    CheckCollision();
+                    CheckCollisionSnake();
                     mySnake.MoveUp(extend);
+                    CheckCollisionBoard();
                     break;
                 case 'd':
-                    CheckCollision();
+                    CheckCollisionSnake();
                     mySnake.MoveDown(extend);
+                    CheckCollisionBoard();
                     break;
                 default:
-                    CheckCollision();
+                    CheckCollisionSnake();
                     mySnake.MoveDown(extend);
+                    CheckCollisionBoard();
                     break;
             }
 
@@ -171,12 +178,35 @@ namespace Snake
             }
         }
 
-        //Kollisionsprüfung
-        private void CheckCollision()
+        //Kollisionsprüfung Schlange
+        private void CheckCollisionSnake()
         {
-            bool collisionSnake = mySnake.CheckCollisionSnake();
+            bool collisionSnake = mySnake.CollisionSnake();
 
             if (collisionSnake == true)
+            {
+                timer.Stop();
+                Application.Current.Shutdown();
+            }
+        }
+
+        //Kollisionsprüfung Board
+        private void CheckCollisionBoard()
+        {
+            bool goThrough;
+            
+            if(cb_GoThrough.IsChecked == true) 
+            {
+                goThrough = true;
+            }
+            else
+            {
+                goThrough = false;
+            }
+
+            bool collisionBoard = mySnake.CollisionBoard(direction, goThrough);
+
+            if (collisionBoard == true)
             {
                 timer.Stop();
                 Application.Current.Shutdown();

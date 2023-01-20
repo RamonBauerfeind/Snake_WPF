@@ -29,9 +29,9 @@ namespace Snake
         public void CreateBoard(Grid Snake)
 
         {
-            for(int i = 1; i < Rows - 1; i++)
+            for(int i = 0; i < Rows - 1; i++)
             {
-                for (int j = 1; j < Columns - 1; j++)
+                for (int j = 0; j < Columns - 1; j++)
                 {
                     Control[i, j] = new Label();
                     Control[i, j].BorderThickness = new Thickness(0.5);

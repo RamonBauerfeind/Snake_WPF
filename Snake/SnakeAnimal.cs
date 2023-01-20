@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -50,9 +51,9 @@ namespace Snake
         //Schlange erstellen
         private void CreateSnake(List<int> positionX, List<int> positionY)
         {
-            for (int i = 0; i < positionX.Count; i++)
+            for (int i = 0; i < Length; i++)
             {
-                if (i == positionX.Count - 1)
+                if (i == Length - 1)
                 {
                     Board.Control[positionY[i], positionX[i]].Background = Brushes.Green;
                 }
@@ -185,7 +186,7 @@ namespace Snake
         }
 
         //Prüfung ob Schlange mit sich selbst kollidiert
-        public bool CheckCollisionSnake()
+        public bool CollisionSnake()
         {
             bool collisonSnake = false;
 
@@ -199,6 +200,87 @@ namespace Snake
             }
 
             return collisonSnake;
+        }
+
+        //Prüfung ob Schlange das Spielfeld verlässt
+        public bool CollisionBoard(char direction, bool goThrough)
+        {
+            bool collisionBoard = false;
+
+            //wenn checkbox GoThrough == false -> GameOver am Spielfeldrand
+            if(goThrough == false)
+            {
+                if (PositionY[Length - 1] == Board.Rows - 2 && direction == 'd')
+                {
+                    MessageBox.Show("Game Over");
+                    collisionBoard = true;
+                }
+                else if (PositionY[Length - 1] == 1 && direction == 'u')
+                {
+                    MessageBox.Show("Game Over");
+                    collisionBoard = true;
+                }
+                else if (PositionX[Length - 1] == Board.Columns - 2 && direction == 'r')
+                {
+                    MessageBox.Show("Game Over");
+                    collisionBoard = true;
+                }
+                else if (PositionX[Length - 1] == 1 && direction == 'l')
+                {
+                    MessageBox.Show("Game Over");
+                    collisionBoard = true;
+                }
+            }
+            //wenn checkbox GoThrough == true -> Durchlaufen des Spielfeldes
+            else
+            {
+                if (PositionY[Length - 1] == Board.Rows - 2 && direction == 'd')
+                {
+                    Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        PositionY[i] = PositionY[i + 1];
+                    }
+                    
+                    PositionY[Length - 1] = 1;
+                }
+                else if (PositionY[Length - 1] == 1 && direction == 'u')
+                {
+                    Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        PositionY[i] = PositionY[i + 1];
+                    }
+
+                    PositionY[Length - 1] = Board.Rows - 2;
+                }
+                else if (PositionX[Length - 1] == Board.Columns - 2 && direction == 'r')
+                {
+                    Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        PositionX[i] = PositionX[i + 1];
+                    }
+
+                    PositionX[Length - 1] = 1;
+                }
+                else if (PositionX[Length - 1] == 1 && direction == 'l')
+                {
+                    Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+
+                    for (int i = 0; i < Length - 1; i++)
+                    {
+                        PositionX[i] = PositionX[i + 1];
+                    }
+
+                    PositionX[Length - 1] = Board.Columns - 2;
+                }
+            }
+            
+            return collisionBoard;
         }
     }
 }
