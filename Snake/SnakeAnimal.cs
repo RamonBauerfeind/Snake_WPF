@@ -25,7 +25,7 @@ namespace Snake
 
         public Food Fruit { get; set; }
 
-        private char fruit;
+        public char fruit;
 
 
         //Methoden

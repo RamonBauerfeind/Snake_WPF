@@ -26,6 +26,7 @@ namespace Snake
     public partial class MainWindow : Window
     {
         //TODO: Bugfixes im gesamten Spiel
+        //TODO: Highscore speichern und anzeigen
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
@@ -104,7 +105,16 @@ namespace Snake
             {
                 extend = true;
 
-                score = score + 10;
+                //apple == score + 10
+                if(mySnake.fruit.Equals('a'))
+                {
+                    score = score + 10;
+                }
+                //banana == score + 20
+                else
+                {
+                    score = score + 20;
+                }
 
                 lb_Score.Content = "Score: " + score;
             }
