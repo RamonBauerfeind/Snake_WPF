@@ -56,10 +56,26 @@ namespace Snake
         //Art der Frucht
         public char FruitType()
         {
-            //a == apple
-            return 'a';
+            char fruit;
+            Random typeOfFruit = new Random();
+            int type = typeOfFruit.Next(1, 3);
 
-            // TODO: mehrere Arten von Früchten erstellen
+            //a == apple -> 1 -> Verlängern der Schlange um 1 Feld
+            //b == banana -> 2 -> -> Verlängern der Schlange um 2 Felder
+            switch (type)
+            {
+                case 1:
+                    fruit = 'a';
+                    break;
+                case 2:
+                    fruit = 'b';
+                    break;
+                default:
+                    fruit = 'a';
+                    break;
+            }
+
+            return fruit;
         }
 
         //Erstellen einer Frucht
@@ -68,10 +84,13 @@ namespace Snake
             switch(Fruit) 
             {
                 case 'a':
-                    Board.Control[PosY, PosX].Background = Brushes.Violet;
+                    Board.Control[PosY, PosX].Background = Brushes.Green;
+                    break;
+                case 'b':
+                    Board.Control[PosY, PosX].Background = Brushes.Yellow;
                     break;
                 default:
-                    Board.Control[PosY, PosX].Background = Brushes.Violet;
+                    Board.Control[PosY, PosX].Background = Brushes.Green;
                     break;
             }
         }

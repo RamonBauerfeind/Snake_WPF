@@ -25,6 +25,8 @@ namespace Snake
 
         public Food Fruit { get; set; }
 
+        private char fruit;
+
 
         //Methoden
         public SnakeAnimal(Board myBoard, Food myFruit)
@@ -55,7 +57,7 @@ namespace Snake
             {
                 if (i == Length - 1)
                 {
-                    Board.Control[positionY[i], positionX[i]].Background = Brushes.Green;
+                    Board.Control[positionY[i], positionX[i]].Background = Brushes.DarkViolet;
                 }
                 else
                 {
@@ -155,11 +157,26 @@ namespace Snake
         //Schlange verlängern
         private void Extend()
         {
-            PositionX.Add(PositionX[PositionX.Count - 1]);
-            PositionY.Add(PositionY[PositionY.Count - 1]);
-            Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
-            Length++;
-
+            //apple -> Verlängern um 1 Feld
+            if(fruit.Equals('a'))
+            {
+                PositionX.Add(PositionX[PositionX.Count - 1]);
+                PositionY.Add(PositionY[PositionY.Count - 1]);
+                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+                Length++;
+            }
+            //banana -> Verlängern um 2 Felder
+            else
+            {
+                PositionX.Add(PositionX[PositionX.Count - 1]);
+                PositionY.Add(PositionY[PositionY.Count - 1]);
+                PositionX.Add(PositionX[PositionX.Count - 2]);
+                PositionY.Add(PositionY[PositionY.Count - 2]);
+                Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
+                Board.Control[PositionY[1], PositionX[1]].Background = Brushes.White;
+                Length = Length + 2;
+            }
+            
             for (int i = 0; i < Length - 1; i++)
             {
                 PositionX[i] = PositionX[i + 1];
@@ -174,6 +191,7 @@ namespace Snake
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
+                fruit = Fruit.Fruit;
                 // TODO: ausschließen dass Food in Schlange erstellt wird)
                 Fruit = new Food(Board);
 
