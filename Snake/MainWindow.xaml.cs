@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -34,6 +35,7 @@ namespace Snake
         public char direction;
         public bool extend = false;
         public int score = 0;
+        private string highscore = "C:\\Users\\ramon\\source\\repos\\Snake_WPF\\Snake\\Snake\\Highscore.txt";
 
         public MainWindow()
         {
@@ -44,6 +46,8 @@ namespace Snake
             myFruit = new Food(myBoard);
 
             mySnake = new SnakeAnimal(myBoard, myFruit);
+
+            ShowScore();
 
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
@@ -94,6 +98,7 @@ namespace Snake
         private void QuitGame()
         {
             timer.Stop();
+            SaveScore();
             Application.Current.Shutdown();
         }
         
@@ -196,6 +201,7 @@ namespace Snake
             if (collisionSnake == true)
             {
                 timer.Stop();
+                SaveScore();
                 Application.Current.Shutdown();
             }
         }
@@ -219,7 +225,48 @@ namespace Snake
             if (collisionBoard == true)
             {
                 timer.Stop();
+                SaveScore();
                 Application.Current.Shutdown();
+            }
+        }
+
+        private void SaveScore()
+        {
+            string strHighscore;
+            int intHighscore;
+
+            if(File.Exists(highscore))
+            {
+                strHighscore = File.ReadAllText(highscore);
+                intHighscore = int.Parse(strHighscore);
+
+                if(intHighscore > score)
+                {
+                    File.WriteAllText(highscore, intHighscore.ToString());
+                }
+                else
+                {
+                    File.WriteAllText(highscore, score.ToString());
+                }
+            }
+            else
+            {
+                File.WriteAllText(highscore, score.ToString());
+            }
+        }
+        
+        private void ShowScore()
+        {
+            string strHighscore;
+
+            if (File.Exists(highscore))
+            {
+                strHighscore = File.ReadAllText(highscore);
+                lbl_highscore.Content = strHighscore;
+            }
+            else
+            {
+                lbl_highscore.Content = "0";
             }
         }
     }

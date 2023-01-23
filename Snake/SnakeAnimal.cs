@@ -55,15 +55,24 @@ namespace Snake
         {
             for (int i = 0; i < Length; i++)
             {
-                if (i == Length - 1)
+                try
                 {
-                    Board.Control[positionY[i], positionX[i]].Background = Brushes.DarkViolet;
+                    if (i == Length - 1)
+                    {
+                        Board.Control[positionY[i], positionX[i]].Background = Brushes.DarkViolet;
+                    }
+                    else
+                    {
+                        Board.Control[positionY[i], positionX[i]].Background = Brushes.Red;
+                    }
                 }
-                else
+                catch
                 {
-                    Board.Control[positionY[i], positionX[i]].Background = Brushes.Red;
+                    MessageBox.Show("Es ist ein unerwarteter Fehler aufgetreten!");
+                    Application.Current.Shutdown();
                 }
-            } 
+                   
+            }
         }
 
         //Bewegung nach oben
