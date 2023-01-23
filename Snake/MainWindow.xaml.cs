@@ -27,7 +27,6 @@ namespace Snake
     public partial class MainWindow : Window
     {
         //TODO: Bugfixes im gesamten Spiel
-        //TODO: Highscore speichern und anzeigen
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
@@ -52,7 +51,7 @@ namespace Snake
             // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(GameTick);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 375);
         }
 
         //Funktion wird bei jedem Tick des Timers ausgelöst
@@ -196,7 +195,7 @@ namespace Snake
         //Kollisionsprüfung Schlange
         private void CheckCollisionSnake()
         {
-            bool collisionSnake = mySnake.CollisionSnake();
+            bool collisionSnake = mySnake.CollisionSnake(score.ToString());
 
             if (collisionSnake == true)
             {
@@ -220,7 +219,7 @@ namespace Snake
                 goThrough = false;
             }
 
-            bool collisionBoard = mySnake.CollisionBoard(direction, goThrough);
+            bool collisionBoard = mySnake.CollisionBoard(direction, goThrough, score.ToString());
 
             if (collisionBoard == true)
             {
@@ -230,6 +229,7 @@ namespace Snake
             }
         }
 
+        //Speichern des Highscore
         private void SaveScore()
         {
             string strHighscore;
@@ -255,6 +255,7 @@ namespace Snake
             }
         }
         
+        //Anzeigen des Highscore
         private void ShowScore()
         {
             string strHighscore;

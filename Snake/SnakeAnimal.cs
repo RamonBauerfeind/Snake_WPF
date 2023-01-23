@@ -59,7 +59,15 @@ namespace Snake
                 {
                     if (i == Length - 1)
                     {
-                        Board.Control[positionY[i], positionX[i]].Background = Brushes.DarkViolet;
+                        try
+                        {
+                            Board.Control[positionY[i], positionX[i]].Background = Brushes.DarkViolet;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Es ist ein unerwarteter Fehler aufgetreten!");
+                            Application.Current.Shutdown();
+                        }
                     }
                     else
                     {
@@ -213,7 +221,7 @@ namespace Snake
         }
 
         //Prüfung ob Schlange mit sich selbst kollidiert
-        public bool CollisionSnake()
+        public bool CollisionSnake(string score)
         {
             bool collisonSnake = false;
 
@@ -221,7 +229,7 @@ namespace Snake
             {
                 if (PositionX[Length - 1] == PositionX[i] && PositionY[Length - 1] == PositionY[i])
                 {
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over" + Environment.NewLine + Environment.NewLine + "Score: " + score);
                     collisonSnake = true;
                 }
             }
@@ -230,7 +238,7 @@ namespace Snake
         }
 
         //Prüfung ob Schlange das Spielfeld verlässt
-        public bool CollisionBoard(char direction, bool goThrough)
+        public bool CollisionBoard(char direction, bool goThrough, string score)
         {
             bool collisionBoard = false;
 
@@ -239,22 +247,22 @@ namespace Snake
             {
                 if (PositionY[Length - 1] == Board.Rows - 2 && direction == 'd')
                 {
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over" + Environment.NewLine + Environment.NewLine + "Score: " + score);
                     collisionBoard = true;
                 }
                 else if (PositionY[Length - 1] == 1 && direction == 'u')
                 {
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over" + Environment.NewLine + Environment.NewLine + "Score: " + score);
                     collisionBoard = true;
                 }
                 else if (PositionX[Length - 1] == Board.Columns - 2 && direction == 'r')
                 {
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over" + Environment.NewLine + Environment.NewLine + "Score: " + score);
                     collisionBoard = true;
                 }
                 else if (PositionX[Length - 1] == 1 && direction == 'l')
                 {
-                    MessageBox.Show("Game Over");
+                    MessageBox.Show("Game Over" + Environment.NewLine + Environment.NewLine + "Score: " + score);
                     collisionBoard = true;
                 }
             }
