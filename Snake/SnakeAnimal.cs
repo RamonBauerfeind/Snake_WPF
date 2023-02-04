@@ -25,7 +25,7 @@ namespace Snake
 
         public Food Fruit { get; set; }
 
-        public char fruit;
+        public char fruit = 'a';
 
 
         //Methoden
@@ -205,12 +205,25 @@ namespace Snake
         public bool Eat()
         {
             bool eat = false;
+            bool collisionFruit;
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
+                //Art der Frucht
                 fruit = Fruit.Fruit;
-                // TODO: ausschließen dass Food in Schlange erstellt wird)
+
+                //neue Frucht wird erstellt
                 Fruit = new Food(Board);
+
+                //Prüfung, ob Frucht in Schlange erstellt wurde
+                collisionFruit = CollisionFruit();
+
+                //Solang Frucht in Schlange erstellt wird -> neue Frucht
+                while(collisionFruit == true) 
+                {
+                    Fruit = new Food(Board);
+                    collisionFruit = CollisionFruit();
+                }
 
                 eat = true;
 
@@ -316,6 +329,25 @@ namespace Snake
             }
             
             return collisionBoard;
+        }
+
+        //Durchlaufen der Schlange und prüfen, ob Frucht in Schlange erstellt wurde
+        private bool CollisionFruit()
+        {
+            bool collision = false;
+            
+            foreach (int i in PositionX)
+            {
+                foreach (int j in PositionY)
+                {
+                    if (i == Fruit.PosX && j == Fruit.PosY)
+                    {
+                        collision = true;
+                    }
+                }
+            }
+
+            return collision;
         }
     }
 }
