@@ -26,8 +26,7 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO: Bugfixes im gesamten Spiel
-        //TODO: Fruit wird manchmal nicht erstellt
+        //Todo: Icon
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
@@ -49,10 +48,9 @@ namespace Snake
 
             ShowScore();
 
-            // TODO: Timer läuft sehr "hakelig"
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(GameTick);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 375);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 200);
         }
 
         //Funktion wird bei jedem Tick des Timers ausgelöst
@@ -99,7 +97,7 @@ namespace Snake
         {
             timer.Stop();
             SaveScore();
-            Application.Current.Shutdown();
+            Process.GetCurrentProcess().Kill();
         }
         
         //Spielablauf
@@ -129,28 +127,28 @@ namespace Snake
             {
                 case 'l':
                     CheckCollisionSnake();
-                    mySnake.MoveLeft(extend);
                     CheckCollisionBoard();
+                    mySnake.MoveLeft(extend);
                     break;
                 case 'r':
                     CheckCollisionSnake();
-                    mySnake.MoveReight(extend);
                     CheckCollisionBoard();
+                    mySnake.MoveReight(extend);
                     break;
                 case 'u':
                     CheckCollisionSnake();
-                    mySnake.MoveUp(extend);
                     CheckCollisionBoard();
+                    mySnake.MoveUp(extend);
                     break;
                 case 'd':
                     CheckCollisionSnake();
-                    mySnake.MoveDown(extend);
                     CheckCollisionBoard();
+                    mySnake.MoveDown(extend);
                     break;
                 default:
                     CheckCollisionSnake();
-                    mySnake.MoveDown(extend);
                     CheckCollisionBoard();
+                    mySnake.MoveDown(extend);
                     break;
             }
 
@@ -163,19 +161,15 @@ namespace Snake
             switch (e.Key) 
             {
                 case Key.Left:
-                    mySnake.MoveLeft(extend);
                     direction = 'l';
                     break;
                 case Key.Right:
-                    mySnake.MoveReight(extend);
                     direction = 'r';
                     break;
                 case Key.Up:
-                    mySnake.MoveUp(extend);
                     direction = 'u';
                     break;
                 case Key.Down:
-                    mySnake.MoveDown(extend);
                     direction = 'd';
                     break;
                 // TODO: F1 funktioniert nicht um das Spiel zu starten
@@ -200,9 +194,7 @@ namespace Snake
 
             if (collisionSnake == true)
             {
-                timer.Stop();
-                SaveScore();
-                Application.Current.Shutdown();
+                QuitGame();
             }
         }
 
@@ -224,9 +216,7 @@ namespace Snake
 
             if (collisionBoard == true)
             {
-                timer.Stop();
-                SaveScore();
-                Application.Current.Shutdown();
+                QuitGame();
             }
         }
 

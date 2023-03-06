@@ -131,11 +131,11 @@ namespace Snake
                 PositionX[Length - 1]--;
            }
            else
-            {
+           {
                 Extend();
 
                 PositionX[Length - 1]--;
-            }
+           }
 
             CreateSnake(PositionX, PositionY);
         }
@@ -192,12 +192,6 @@ namespace Snake
                 Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
                 Board.Control[PositionY[1], PositionX[1]].Background = Brushes.White;
                 Length = Length + 2;
-            }
-            
-            for (int i = 0; i < Length - 1; i++)
-            {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionY[i + 1];
             }
         }
 
@@ -289,6 +283,7 @@ namespace Snake
                     for (int i = 0; i < Length - 1; i++)
                     {
                         PositionY[i] = PositionY[i + 1];
+                        PositionX[i] = PositionX[i + 1];
                     }
                     
                     PositionY[Length - 1] = 1;
@@ -300,8 +295,9 @@ namespace Snake
                     for (int i = 0; i < Length - 1; i++)
                     {
                         PositionY[i] = PositionY[i + 1];
+                        PositionX[i] = PositionX[i + 1];
                     }
-
+                    
                     PositionY[Length - 1] = Board.Rows - 2;
                 }
                 else if (PositionX[Length - 1] == Board.Columns - 2 && direction == 'r')
@@ -310,9 +306,10 @@ namespace Snake
 
                     for (int i = 0; i < Length - 1; i++)
                     {
+                        PositionY[i] = PositionY[i + 1];
                         PositionX[i] = PositionX[i + 1];
                     }
-
+                    
                     PositionX[Length - 1] = 1;
                 }
                 else if (PositionX[Length - 1] == 1 && direction == 'l')
@@ -321,9 +318,10 @@ namespace Snake
 
                     for (int i = 0; i < Length - 1; i++)
                     {
+                        PositionY[i] = PositionY[i + 1];
                         PositionX[i] = PositionX[i + 1];
                     }
-
+                    
                     PositionX[Length - 1] = Board.Columns - 2;
                 }
             }

@@ -87,7 +87,7 @@ namespace Snake
                     Board.Control[PosY, PosX].Background = Brushes.Green;
                     break;
                 case 'b':
-                    Board.Control[PosY, PosX].Background = Brushes.Yellow;
+                    Board.Control[PosY, PosX].Background = Brushes.GreenYellow;
                     break;
                 default:
                     Board.Control[PosY, PosX].Background = Brushes.Green;
