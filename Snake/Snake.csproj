@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="snake.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="snake.ico" />
+  </ItemGroup>
+
 </Project>

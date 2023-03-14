@@ -26,7 +26,6 @@ namespace Snake
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Todo: Icon
         Board myBoard;
         SnakeAnimal mySnake;
         Food myFruit;
