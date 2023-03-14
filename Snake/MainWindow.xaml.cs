@@ -21,6 +21,9 @@ using System.Windows.Threading;
 
 namespace Snake
 {
+    //TODO: Spielneustart nach GameOver
+    //TODO: Bug erstellen mehrerer Früchte => Prüfung erstellen in Schlange?
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
