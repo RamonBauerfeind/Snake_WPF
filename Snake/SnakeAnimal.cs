@@ -164,11 +164,7 @@ namespace Snake
         {
             Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-            for (int i = 0; i < Length - 1; i++)
-            {
-                PositionX[i] = PositionX[i + 1];
-                PositionY[i] = PositionY[i + 1];
-            }
+            MoveSnake();
         }
 
         //Schlange verlängern
@@ -280,11 +276,7 @@ namespace Snake
                 {
                     Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-                    for (int i = 0; i < Length - 1; i++)
-                    {
-                        PositionY[i] = PositionY[i + 1];
-                        PositionX[i] = PositionX[i + 1];
-                    }
+                    MoveSnake();
                     
                     PositionY[Length - 1] = 1;
                 }
@@ -292,11 +284,7 @@ namespace Snake
                 {
                     Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-                    for (int i = 0; i < Length - 1; i++)
-                    {
-                        PositionY[i] = PositionY[i + 1];
-                        PositionX[i] = PositionX[i + 1];
-                    }
+                    MoveSnake();
                     
                     PositionY[Length - 1] = Board.Rows - 2;
                 }
@@ -304,11 +292,7 @@ namespace Snake
                 {
                     Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-                    for (int i = 0; i < Length - 1; i++)
-                    {
-                        PositionY[i] = PositionY[i + 1];
-                        PositionX[i] = PositionX[i + 1];
-                    }
+                    MoveSnake();
                     
                     PositionX[Length - 1] = 1;
                 }
@@ -316,11 +300,7 @@ namespace Snake
                 {
                     Board.Control[PositionY[0], PositionX[0]].Background = Brushes.White;
 
-                    for (int i = 0; i < Length - 1; i++)
-                    {
-                        PositionY[i] = PositionY[i + 1];
-                        PositionX[i] = PositionX[i + 1];
-                    }
+                    MoveSnake();
                     
                     PositionX[Length - 1] = Board.Columns - 2;
                 }
@@ -346,6 +326,16 @@ namespace Snake
             }
 
             return collision;
+        }
+
+        //Position der Schlange verschieben
+        private void MoveSnake()
+        {
+            for (int i = 0; i < Length - 1; i++)
+            {
+                PositionY[i] = PositionY[i + 1];
+                PositionX[i] = PositionX[i + 1];
+            }
         }
     }
 }
