@@ -209,8 +209,11 @@ namespace Snake
                 collisionFruit = CollisionFruit();
 
                 //Solang Frucht in Schlange erstellt wird -> neue Frucht
-                while(collisionFruit == true) 
+                while (collisionFruit == true)
                 {
+                    //MessageBox.Show("Collision");
+
+                    Board.Control[Fruit.PosY, Fruit.PosX].Background = Brushes.White;
                     Fruit = new Food(Board);
                     collisionFruit = CollisionFruit();
                 }
@@ -313,15 +316,12 @@ namespace Snake
         private bool CollisionFruit()
         {
             bool collision = false;
-            
-            foreach (int i in PositionX)
+
+            for(int i = 0; i < Length - 1; i++)
             {
-                foreach (int j in PositionY)
+                if (Fruit.PosX == PositionX[i] && Fruit.PosY == PositionY[i])
                 {
-                    if (i == Fruit.PosX && j == Fruit.PosY)
-                    {
-                        collision = true;
-                    }
+                    collision = true;
                 }
             }
 
