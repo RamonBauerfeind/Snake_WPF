@@ -208,11 +208,9 @@ namespace Snake
                 //Prüfung, ob Frucht in Schlange erstellt wurde
                 collisionFruit = CollisionFruit();
 
-                //Solang Frucht in Schlange erstellt wird -> neue Frucht
+                //solang Frucht in Schlange erstellt wird -> neue Frucht
                 while (collisionFruit == true)
                 {
-                    //MessageBox.Show("Collision");
-
                     Board.Control[Fruit.PosY, Fruit.PosX].Background = Brushes.White;
                     Fruit = new Food(Board);
                     collisionFruit = CollisionFruit();
