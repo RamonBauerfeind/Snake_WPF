@@ -22,7 +22,6 @@ using System.Windows.Threading;
 namespace Snake
 {
     //TODO: Spielneustart nach GameOver
-    //TODO: Art der Frucht in Label anzeigen
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -47,6 +46,8 @@ namespace Snake
             myFruit = new Food(myBoard);
 
             mySnake = new SnakeAnimal(myBoard, myFruit);
+            
+            TypeOfFruit();
 
             ShowScore();
 
@@ -105,8 +106,10 @@ namespace Snake
         //Spielablauf
         public void PlayGame()
         {
+            TypeOfFruit();
+
             //Schlange verlängern und Punkte hochzählen
-            if(mySnake.Eat() == true)
+            if (mySnake.Eat() == true)
             {
                 extend = true;
 
@@ -261,6 +264,25 @@ namespace Snake
             else
             {
                 lbl_highscore.Content = "0";
+            }
+        }
+
+        private void TypeOfFruit()
+        {
+            switch (mySnake.fruit)
+            {
+                case 'a':
+                    lbl_TypeOfFruit.Content = "Apple";
+                    lbl_TypeOfFruit.Foreground = Brushes.Green;
+                    break;
+                case 'b':
+                    lbl_TypeOfFruit.Content = "Banana";
+                    lbl_TypeOfFruit.Foreground = Brushes.GreenYellow;
+                    break;
+                default:
+                    lbl_TypeOfFruit.Content = "Don't know!";
+                    lbl_TypeOfFruit.Foreground = Brushes.Red;
+                    break;
             }
         }
     }

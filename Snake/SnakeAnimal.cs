@@ -25,7 +25,7 @@ namespace Snake
 
         public Food Fruit { get; set; }
 
-        public char fruit = 'a';
+        public char fruit;
 
 
         //Methoden
@@ -34,6 +34,9 @@ namespace Snake
             Board = myBoard;
 
             Fruit = myFruit;
+
+            //Art der Frucht
+            fruit = Fruit.Fruit;
 
             PositionX = new List<int>();
             PositionX.Add(2);
@@ -199,11 +202,11 @@ namespace Snake
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
-                //Art der Frucht
-                fruit = Fruit.Fruit;
-
                 //neue Frucht wird erstellt
                 Fruit = new Food(Board);
+
+                //Art der Frucht
+                fruit = Fruit.Fruit;
 
                 //Prüfung, ob Frucht in Schlange erstellt wurde
                 collisionFruit = CollisionFruit();
