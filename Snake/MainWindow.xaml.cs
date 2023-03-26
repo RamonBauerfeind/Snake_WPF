@@ -29,12 +29,19 @@ namespace Snake
     public partial class MainWindow : Window
     {
         Board myBoard;
+
         SnakeAnimal mySnake;
+
         Food myFruit;
+
         DispatcherTimer timer;
+
         public char direction;
+
         public bool extend = false;
+
         public int score = 0;
+
         private string highscore = "C:\\Users\\ramon\\source\\repos\\Snake_WPF\\Snake\\Snake\\Highscore.txt";
 
         public MainWindow()
@@ -46,7 +53,7 @@ namespace Snake
             myFruit = new Food(myBoard);
 
             mySnake = new SnakeAnimal(myBoard, myFruit);
-            
+
             TypeOfFruit();
 
             ShowScore();
@@ -177,7 +184,6 @@ namespace Snake
                 case Key.Down:
                     direction = 'd';
                     break;
-                // TODO: F1 funktioniert nicht um das Spiel zu starten
                 case Key.F1:
                     StartGame();
                     break;

@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Snake"
         mc:Ignorable="d" Height="600" Width="800"
         WindowStyle="ThreeDBorderWindow" WindowState="Normal" 
-        ResizeMode="CanResizeWithGrip" Topmost="True" Icon="/snake.ico" Title="Let's play snake!">
+        ResizeMode="CanResizeWithGrip" Topmost="True" Icon="/snake.ico" Title="Let's play snake!" KeyDown="KeyEventArgs">
 
     <Grid x:Name="SnakeUI" KeyDown="KeyEventArgs">
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -73,7 +74,7 @@
 
         <Label Content="Highscore:" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkGreen"/>
         <Label x:Name="lbl_highscore" Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="DarkGreen" FontStyle="Italic"/>
-        
+
         <Label Grid.Row="0" Grid.Column="17" Grid.ColumnSpan="4" Content="Type of Fruit:" FontSize="16" FontWeight="Bold" Foreground="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label x:Name="lbl_TypeOfFruit" Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="4" Foreground="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
 
@@ -94,6 +95,7 @@
         <Label Content="Go Through:" Grid.Row="27" Grid.Column="16" Grid.ColumnSpan="4" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"/>
         <CheckBox x:Name="cb_GoThrough" Grid.Row="27" Grid.Column="20" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Label x:Name="lb_Score" Content="Score: 0" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="ExtraBold" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+
     </Grid>
-    
+
 </Window>
