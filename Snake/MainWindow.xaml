@@ -70,13 +70,19 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!--Snake-->
         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="25" Content="Snake" FontSize="22" FontWeight="Bold" FontStyle="Italic" Foreground="Blue" BorderBrush="Black" BorderThickness="0, 0, 0, 3" VerticalAlignment="Center" Background="Goldenrod"/>
-
-        <Label Content="Highscore:" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkGreen"/>
-        <Label x:Name="lbl_highscore" Grid.Row="0" Grid.Column="11" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="DarkGreen" FontStyle="Italic"/>
-
+        
+        <!--Score-->
+        <Label x:Name="lb_Score" Content="Score: 0" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="4" FontSize="18" FontWeight="ExtraBold" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+        
+        <!--Highscore-->
+        <Label Content="Highscore:" Grid.Row="0" Grid.Column="9" Grid.ColumnSpan="4" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkGreen"/>
+        <Label x:Name="lbl_highscore" Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="DarkGreen" FontStyle="Italic"/>
+        
+        <!--TypeOfFruit-->
         <Label Grid.Row="0" Grid.Column="17" Grid.ColumnSpan="4" Content="Type of Fruit:" FontSize="16" FontWeight="Bold" Foreground="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="lbl_TypeOfFruit" Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="4" Foreground="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <Label x:Name="lbl_TypeOfFruit" Grid.Row="0" Grid.Column="22" Grid.ColumnSpan="4" Foreground="DarkGreen" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontWeight="Bold" FontStyle="Italic"/>
 
         <Label Grid.Row="1" Grid.Column="0" Grid.RowSpan="26" BorderBrush="Black" BorderThickness="0, 0, 3, 0" Background="Goldenrod"/>
 
@@ -89,12 +95,21 @@
         <Label Grid.Row="27" Grid.Column="0" Background="Goldenrod"/>
         <Label Grid.Row="27" Grid.Column="27" Background="Goldenrod"/>
 
+        <!--Start-->
         <Button x:Name="btn_Start" Click="btn_Start_Click" Content="Start [F1]" Grid.Row="27" Grid.Column="1" Grid.ColumnSpan="4"/>
+        
+        <!--Pause-->
         <Button x:Name="btn_Pause" Click="btn_Pause_Click" Content="Pause [F2]" Grid.Row="27" Grid.Column="6" Grid.ColumnSpan="4"/>
-        <Button x:Name="btn_Quit" Click="btn_Stop_Quit" Content="Stop [F3]" Grid.Row="27" Grid.Column="11" Grid.ColumnSpan="4"/>
-        <Label Content="Go Through:" Grid.Row="27" Grid.Column="16" Grid.ColumnSpan="4" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"/>
-        <CheckBox x:Name="cb_GoThrough" Grid.Row="27" Grid.Column="20" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="lb_Score" Content="Score: 0" Grid.Row="27" Grid.Column="22" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1" FontSize="16" FontWeight="ExtraBold" FontStyle="Italic" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red"/>
+        
+        <!--Restart-->
+        <Button x:Name="btn_Restart" Click="btn_Restart_Click" Content="Restart [F3]" Grid.Row="27" Grid.Column="11" Grid.ColumnSpan="4"/>
+        
+        <!--Quit-->
+        <Button x:Name="btn_Quit" Click="btn_Stop_Quit" Content="Quit [F4]" Grid.Row="27" Grid.Column="16" Grid.ColumnSpan="4"/>
+        
+        <!--Go Through-->
+        <Label Content="Go Through:" Grid.Row="27" Grid.Column="21" Grid.ColumnSpan="4" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"/>
+        <CheckBox x:Name="cb_GoThrough" Grid.Row="27" Grid.Column="25" IsChecked="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
     </Grid>
 

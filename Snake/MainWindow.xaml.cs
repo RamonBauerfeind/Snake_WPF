@@ -1,28 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Snake
 {
-    //TODO: Spielneustart nach GameOver
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -42,7 +26,7 @@ namespace Snake
 
         public int score = 0;
 
-        private string highscore = "C:\\Users\\ramon\\source\\repos\\Snake_WPF\\Snake\\Snake\\Highscore.txt";
+        private string highscore = "C:\\Users\\Public\\Documents\\Snake\\Highscore.txt";
 
         public MainWindow()
         {
@@ -79,6 +63,11 @@ namespace Snake
             PauseGame();
         }
 
+        private void btn_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            RestartGame();
+        }
+
         private void btn_Stop_Quit(object sender, RoutedEventArgs e)
         {
             QuitGame();
@@ -102,12 +91,23 @@ namespace Snake
             }
         }
 
+        //Restart
+        private void RestartGame()
+        {
+            timer.Stop();
+            SaveScore();
+            MainWindow newWindow = new MainWindow();
+            Application.Current.MainWindow = newWindow;
+            newWindow.Show();
+            this.Close();
+        }
+
         //Beenden
         private void QuitGame()
         {
             timer.Stop();
             SaveScore();
-            Process.GetCurrentProcess().Kill();
+            Application.Current.Shutdown();
         }
         
         //Spielablauf
@@ -191,6 +191,9 @@ namespace Snake
                     PauseGame();
                     break;
                 case Key.F3:
+                    RestartGame();
+                    break;
+                case Key.F4:
                     QuitGame();
                     break;
                 default:
@@ -205,7 +208,7 @@ namespace Snake
 
             if (collisionSnake == true)
             {
-                QuitGame();
+                RestartGame();
             }
         }
 
@@ -227,7 +230,7 @@ namespace Snake
 
             if (collisionBoard == true)
             {
-                QuitGame();
+                RestartGame();
             }
         }
 
