@@ -278,7 +278,7 @@ namespace Snake
 
         private void TypeOfFruit()
         {
-            switch (mySnake.fruit)
+            switch (mySnake.fruitForLabel)
             {
                 case 'a':
                     lbl_TypeOfFruit.Content = "Apple";
@@ -289,7 +289,7 @@ namespace Snake
                     lbl_TypeOfFruit.Foreground = Brushes.GreenYellow;
                     break;
                 default:
-                    lbl_TypeOfFruit.Content = "Don't know!";
+                    lbl_TypeOfFruit.Content = "Fruit";
                     lbl_TypeOfFruit.Foreground = Brushes.Red;
                     break;
             }

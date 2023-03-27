@@ -20,6 +20,8 @@ namespace Snake
 
         public char fruit;
 
+        public char fruitForLabel;
+
 
         //Methoden
         public SnakeAnimal(Board myBoard, Food myFruit)
@@ -30,6 +32,9 @@ namespace Snake
 
             //Art der Frucht
             fruit = Fruit.Fruit;
+
+            //Art der Frucht, welche im Label lbl_TypeOfFruit angezeigt wird
+            fruitForLabel = Fruit.Fruit;
 
             PositionX = new List<int>();
             PositionX.Add(2);
@@ -195,11 +200,14 @@ namespace Snake
 
             if((Fruit.PosX == PositionX[Length - 1]) && (Fruit.PosY == PositionY[Length - 1])) 
             {
+                //Art der Frucht
+                fruit = Fruit.Fruit;
+
                 //neue Frucht wird erstellt
                 Fruit = new Food(Board);
 
-                //Art der Frucht
-                fruit = Fruit.Fruit;
+                //Frucht, welche im Label lbl_TypeOfFruit angezeigt wird
+                fruitForLabel = Fruit.Fruit;
 
                 //Prüfung, ob Frucht in Schlange erstellt wurde
                 collisionFruit = CollisionFruit();
